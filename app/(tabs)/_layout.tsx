@@ -1,43 +1,86 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { FontAwesome } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import PillTabBar from "@/components/ui/PillTabBar";
+import { AppColors } from "@/constants/AppColors";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
+      tabBar={(props) => <PillTabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: AppColors.primary,
+        tabBarInactiveTintColor: AppColors.textSecondary,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarStyle: {
+          display: "none", // Hide default tab bar since we're using custom
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <FontAwesome
+              name="home"
+              size={24}
+              color={focused ? AppColors.primary : AppColors.textSecondary}
+            />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="medications"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Medications",
+          tabBarIcon: ({ color, focused }) => (
+            <FontAwesome
+              name="medkit"
+              size={24}
+              color={focused ? AppColors.primary : AppColors.textSecondary}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="analytics"
+        options={{
+          title: "Analytics",
+          tabBarIcon: ({ color, focused }) => (
+            <FontAwesome
+              name="bar-chart"
+              size={24}
+              color={focused ? AppColors.primary : AppColors.textSecondary}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="ai-assistant"
+        options={{
+          title: "AI Chat",
+          tabBarIcon: ({ color, focused }) => (
+            <FontAwesome
+              name="comments"
+              size={24}
+              color={focused ? AppColors.primary : AppColors.textSecondary}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color, focused }) => (
+            <FontAwesome
+              name="cog"
+              size={24}
+              color={focused ? AppColors.primary : AppColors.textSecondary}
+            />
+          ),
         }}
       />
     </Tabs>

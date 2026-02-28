@@ -32,8 +32,19 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env.example
 
 # typescript
 *.tsbuildinfo
+
+# Vim swap files
+*.swp
+*.swo
+
+# Supabase setup files (app uses SQLite)
+supabase-setup*.sql
+
+# Development files
+*.com.facebook.*
 
 app-example
