@@ -12,7 +12,7 @@
       "command": "npx",
       "args": ["-y", "@supabase/mcp-server-supabase@latest", "--read-only", "--project-ref=<rjvcohllunmvomplyjri>"],
       "env": {
-        "SUPABASE_ACCESS_TOKEN": "sbp_16cb7e6bf9d86cfebc9408cce380798d09ded07f"
+        "SUPABASE_ACCESS_TOKEN": ""
       }
     }
   }
